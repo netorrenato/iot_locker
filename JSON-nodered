@@ -1,0 +1,305 @@
+[
+    {
+        "id": "fe3158f81724f5a3",
+        "type": "tab",
+        "label": "NÃO MEXER PF PROJETO IOT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2cfe4805ceedcbe2",
+        "type": "mqtt in",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "topic": "lockerP01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "927b05e809b50c78",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "030413b9eeaa1eac",
+                "c592ca452b94ee7b"
+            ]
+        ]
+    },
+    {
+        "id": "49fb91d0d14a4b8d",
+        "type": "postgresql",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "query": "SELECT *\nFROM users\nWHERE rfid = $id",
+        "postgreSQLConfig": "2593c91cf86b2ec6",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 690,
+        "y": 160,
+        "wires": [
+            [
+                "397a316948512cf7",
+                "983489fa910677ec"
+            ]
+        ]
+    },
+    {
+        "id": "030413b9eeaa1eac",
+        "type": "debug",
+        "z": "fe3158f81724f5a3",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "397a316948512cf7",
+        "type": "debug",
+        "z": "fe3158f81724f5a3",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "983489fa910677ec",
+        "type": "mqtt out",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "topic": "IDlocker01",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "927b05e809b50c78",
+        "x": 950,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cf655d2c961d3ef9",
+        "type": "mqtt in",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "topic": "locker01tranca",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "927b05e809b50c78",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "b17543ce36d06465",
+                "6353c88beda27982"
+            ]
+        ]
+    },
+    {
+        "id": "d6fb52972a2061d0",
+        "type": "postgresql",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "query": "INSERT INTO access (user_id, locker_id, status) VALUES ($id_usuario, $locker, $status);",
+        "postgreSQLConfig": "2593c91cf86b2ec6",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 830,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b17543ce36d06465",
+        "type": "change",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "queryParameters",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 440,
+        "wires": [
+            [
+                "d6fb52972a2061d0",
+                "0c186e7307d80c9f"
+            ]
+        ]
+    },
+    {
+        "id": "6353c88beda27982",
+        "type": "debug",
+        "z": "fe3158f81724f5a3",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0c186e7307d80c9f",
+        "type": "debug",
+        "z": "fe3158f81724f5a3",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c592ca452b94ee7b",
+        "type": "change",
+        "z": "fe3158f81724f5a3",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "queryParameters.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "b7b6c8ce63b413fe",
+                "49fb91d0d14a4b8d"
+            ]
+        ]
+    },
+    {
+        "id": "b7b6c8ce63b413fe",
+        "type": "debug",
+        "z": "fe3158f81724f5a3",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "927b05e809b50c78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.janks.dev.br",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2593c91cf86b2ec6",
+        "type": "postgreSQLConfig",
+        "name": "",
+        "host": "postgresql.janks.dev.br",
+        "hostFieldType": "str",
+        "port": "5432",
+        "portFieldType": "num",
+        "database": "projeto",
+        "databaseFieldType": "str",
+        "ssl": "true",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": "10",
+        "maxFieldType": "num",
+        "idle": "1000",
+        "idleFieldType": "num",
+        "connectionTimeout": "10000",
+        "connectionTimeoutFieldType": "num",
+        "user": "iot",
+        "userFieldType": "str",
+        "password": "pepcon-garton",
+        "passwordFieldType": "str"
+    }
+]
