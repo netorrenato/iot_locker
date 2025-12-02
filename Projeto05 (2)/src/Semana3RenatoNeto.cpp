@@ -91,6 +91,8 @@ void reconectarMQTT() {
  Serial.println(" conectado!");
 
  mqtt.subscribe("IDlocker01"); // qos = 0
+ mqtt.subscribe("locker-override"); // qos = 0
+
  }
 }
 
@@ -143,6 +145,7 @@ void telaTranca(){
 
 void tranca(){
   Serial.println("Trancando locker...");
+
   digitalWrite(RELAY_PIN, RELAY_ACTIVE_LOW ? LOW : HIGH);
   lockerTrancado = 1;
   rgbLedWrite(RGB_BUILTIN, 100, 0, 0);
@@ -235,6 +238,29 @@ void recebeuMensagem(String topico, String conteudo) {
 
       tela.display(true); 
     }  
+ }
+
+ if (topico == "locker-override"){
+  JsonDocument data1; 
+  deserializeJson(data1, conteudo);
+  String locker_lido = data1["locker_id"];
+  if(locker_lido.startsWith(String(lockerAtual))) {
+    if (lockerTrancado){
+      id_usuario = "Gerente";
+      id_usuario = "0";
+      id_usado = "0";
+      id_base = "0";
+
+      destranca();
+    }
+    else{
+      id_usuario = "Gerente";
+      id_usuario = "0";
+      id_usado = "0";
+      id_base = "0";
+      tranca();
+    }
+  }
  }
 
 }

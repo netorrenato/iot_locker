@@ -324,7 +324,7 @@ void loop() {
  
   if(botao.isPressed() || lockerTrancado){
     alarmeLigado = false;
-    //digitalWrite(BUZZER_PIN, false);
+    digitalWrite(BUZZER_PIN, false);
     contaAlarm = 0;
   }
 
@@ -348,7 +348,7 @@ void loop() {
         contaAlarm++;
         if (contaAlarm == 5){
             Serial.println("porta a 25 seg aberta");
-            //digitalWrite(BUZZER_PIN, true);
+            digitalWrite(BUZZER_PIN, true);
             contaAlarm = 0;
         }
     }

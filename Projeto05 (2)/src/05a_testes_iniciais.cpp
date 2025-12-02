@@ -86,6 +86,23 @@ void botaoPressionado(GFButton& botaoDoEvento) {
   alternarLocker();
 }
 
+void comandoSerial() {
+  if (Serial.available()) {
+    String msg = Serial.readStringUntil('\n'); 
+
+    msg.trim(); 
+
+    if (msg == "A") {
+      Serial.println("ABRIR, Destrancando o locker");
+      digitalWrite(RELAY_PIN, RELAY_ACTIVE_LOW ? HIGH : LOW);  
+    } 
+    else if (msg == "F") {
+      Serial.println("FECHAR, Trancando o locker");
+      digitalWrite(RELAY_PIN, RELAY_ACTIVE_LOW ? LOW : HIGH);  
+    }
+  }
+}
+
 void setup() {
   Serial.begin(115200);
   delay(500);
@@ -122,6 +139,8 @@ void loop() {
     rfid.PCD_StopCrypto1();
   }
 
+  comandoSerial();
+  
   unsigned long agora = millis();
 
   if (!portaTrancada) {
