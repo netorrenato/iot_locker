@@ -3,7 +3,7 @@ Para o codigo principal dentro da pasta projetoiot_final tem os arquivos do codi
 O controle de registro dos usuários no banco de dados é feito no Node-red (pelo arquivo .JSON mandado também nesse repositório) e pelo MQTT. Possibilitando, assim, a interação desses dois componentes
 com o locker. Além disso, existe o controle de acessos enviado por esses dois elementos, onde é registrado o usuário, horario e o estado em que o locker se encontra (aberto ou fechado). 
 
-Um dashboard no grafana consome os dados dos bancos para explicitar informações sobre a ocupação dos lockers. 
+Um dashboard no Grafana consome os dados dos bancos para explicitar informações sobre a ocupação dos lockers. Os gráficos mostrados ilustram o percentual de lockers ocupados a cada hora, quais lockers estão ocupados e o estado de cada locker ao longo do tempo. Foi também implementado um filtro, para que o usuário possa escolher quais lockers deseja incluir na visualização.
 
 No banco de dados foram utilizadas e criados duas tabelas: a tabela **access** com o _ID do usuário_, _estado da porta_, _data e hora de seu acesso_ e _numero do locker_; e a tabela **users** com o _nome do usuario_, seu _ID_ e seu _RFID_.
 
