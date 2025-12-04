@@ -7,4 +7,4 @@ Um dashboard no grafana consome os dados dos bancos para explicitar informaçõe
 
 No banco de dados foram utilizadas e criados duas tabelas: a tabela **access** com o _ID do usuário_, _estado da porta_, _data e hora de seu acesso_ e _numero do locker_; e a tabela **users** com o _nome do usuario_, seu _ID_ e seu _RFID_.
 
-Para a montagem do circuito, utilizamos o _EasyEDA_ para montar uma PCB compacta que se adequace as nossas especificações. Utilizando o _OnShape_, fizemos e imprimimos em 3D uma caixa para proteger a PCB e garantir uma maior organização na montagem do locker.
+Para a montagem do circuito, utilizamos o _EasyEDA_ para montar uma PCB compacta que se adequace as nossas especificações. Utilizando o _OnShape_, fizemos e imprimimos em 3D uma caixa para proteger a PCB e garantir uma maior organização na montagem do locker. (link para o OnShape: https://cad.onshape.com/documents/236972057961f44d27c5bdba/w/3e178e81a400f19d9918be7c/e/daddb86ca3d09b8bac02386e?renderMode=0&uiState=6930e76fbf49f2b960297c16)
